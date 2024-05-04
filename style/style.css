@@ -1,0 +1,103 @@
+/* global */
+.container,
+.container .stopwatch,
+.container .controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hidden {
+  display: none !important;
+  transition: 0.4 ease-in;
+}
+
+:root {
+  --colour_darkAqua: #023535;
+  --colour_mediumAqua: #015958;
+  --colour_lightAqua: #0caba8;
+
+  --default_colour_white: #efefef;
+
+  --font_poppins: "Poppins", sans-serif;
+  --font_rubik: "Rubik", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body,
+html {
+  height: 100vh;
+  position: relative;
+  background-color: var(--colour_darkAqua);
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.container .stopwatch {
+  background-color: var(--colour_mediumAqua);
+  padding: 3rem;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  font-size: 2rem;
+  color: var(--default_colour_white);
+  font-family: var(--font_poppins);
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset,
+    rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
+}
+
+.container .controls {
+  gap: 2rem;
+}
+
+.container .controls button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: var(--colour_lightAqua);
+  color: var(--default_colour_white);
+  font-family: var(--font_poppins);
+  font-weight: 500;
+  border-radius: 10px;
+  transition: 0.4s ease-in;
+}
+
+.container .controls button:hover {
+  transform: scale(1.1);
+}
+
+.container .controls button:active {
+  transform: scale(0.9);
+}
+
+#mark_list {
+  padding: 1rem 1rem;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  color: var(--default_colour_white);
+  font-family: var(--font_rubik);
+}
+
+#toggle_marklist {
+  display: none;
+  background-color: transparent;
+  border: none;
+  color: var(--default_colour_white);
+  font-size: 1.5rem;
+  margin-top: -3rem;
+  cursor: pointer;
+}
