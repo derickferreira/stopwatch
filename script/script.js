@@ -65,6 +65,7 @@ const markTime = () => {
 // events
 toggleBtn.addEventListener("click", () => {
   if (intervalId === 0) {
+    modal.classList.add("hidden");
     startTimer();
     toggleBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
   } else {
