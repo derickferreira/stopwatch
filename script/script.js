@@ -1,9 +1,16 @@
 "use strict";
 // selecting items
 const stopWatch = document.querySelector(".stopwatch span");
+const markContainer = document.querySelector("#mark_list");
 const toggleBtn = document.querySelector("#toggle");
 const resetBtn = document.querySelector("#reset");
 
+const toggleListBtn = document.querySelector("#toggle_marklist");
+
+const markBtn = document.querySelector("#mark");
+const modal = document.querySelector(".modal");
+const modalBtn = document.querySelector(".modal button");
+modal.classList.add("hidden");
 let marks = [];
 let timer = 0;
 let intervalId = 0;
@@ -42,6 +49,19 @@ const resetTimer = () => {
   stopWatch.textContent = "00:00:00:00";
 };
 
+// mark
+const addMarkToList = (markIndex, markTime) => {
+  markContainer.innerHTML += `<p>Mark ${markIndex}: ${formatTimer(
+    markTime
+  )}</p>`;
+};
+
+const markTime = () => {
+  marks.push(timer);
+  addMarkToList(marks.length, timer);
+  toggleListBtn.style.display = "block";
+};
+
 // events
 toggleBtn.addEventListener("click", () => {
   if (intervalId === 0) {
@@ -56,4 +76,29 @@ toggleBtn.addEventListener("click", () => {
 resetBtn.addEventListener("click", () => {
   resetTimer();
   toggleBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+  marks = [];
+  markContainer.innerText = "";
+  toggleListBtn.classList.add("hidden");
+});
+
+markBtn.addEventListener("click", () => {
+  if (timer === 0) {
+    modal.classList.remove("hidden");
+    return;
+  }
+  markTime();
+  toggleListBtn.classList.remove("hidden");
+});
+
+toggleListBtn.addEventListener("click", () => {
+  markContainer.classList.toggle("hidden");
+  if (markContainer.classList.contains("hidden")) {
+    toggleListBtn.style.transform = "rotateX(180deg)";
+  } else {
+    toggleListBtn.style.transform = "rotate(0)";
+  }
+});
+
+modalBtn.addEventListener("click", () => {
+  modal.classList.add("hidden");
 });
